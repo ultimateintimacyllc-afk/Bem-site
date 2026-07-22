@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bangkok Elite Models — Premium Photography Agency</title>
+  <meta name="description" content="Southeast Asia's premier model photography agency. Portrait, glamour, editorial, and fine art sessions in Bangkok, Phuket, Chiang Mai, and beyond.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111111'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23D4B86A'/%3E%3Cstop offset='50%25' stop-color='%23C9A84C'/%3E%3Cstop offset='100%25' stop-color='%238A6F2E'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50%25' y='52' text-anchor='middle' font-family='Georgia,serif' font-size='48' font-weight='400' fill='url(%23g)'%3EB%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --gold:oklch(75% 0.12 85);--gold-light:oklch(82% 0.10 85);--gold-dark:oklch(55% 0.12 80);
+      --bg:oklch(8% 0.005 85);--bg-deep:oklch(5% 0.003 85);--charcoal:oklch(15% 0.008 85);
+      --cream:oklch(92% 0.015 85);--cream-dim:oklch(80% 0.01 85);
+      --ease-out:cubic-bezier(0.16,1,0.3,1);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Montserrat',sans-serif;font-weight:300;background:var(--bg);color:var(--cream);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:300;text-wrap:balance}
+    a{color:inherit;text-decoration:none}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;background:oklch(5% 0.003 85/.92);backdrop-filter:blur(12px);border-bottom:1px solid oklch(20% 0.01 85/.5)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold);letter-spacing:.06em;font-weight:400}
+    .nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+    .nav-links a{color:var(--cream-dim);font-size:.65rem;text-transform:uppercase;letter-spacing:.14em;font-weight:400;transition:color .2s;position:relative}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease-out)}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+
+    /* LANG SWITCHER */
+    .lang-wrap{position:relative}
+    .lang-btn{background:none;border:1px solid oklch(30% 0.01 85);color:var(--cream-dim);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;padding:5px 12px;cursor:pointer;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:6px;transition:border-color .2s}
+    .lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+    .lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--bg-deep);border:1px solid oklch(22% 0.01 85);min-width:180px;max-height:320px;overflow-y:auto;display:none;z-index:200}
+    .lang-dropdown.open{display:block}
+    .lang-dropdown button{display:block;width:100%;text-align:left;padding:8px 14px;background:none;border:none;color:var(--cream-dim);font-size:.72rem;cursor:pointer;font-family:'Montserrat',sans-serif;transition:background .15s,color .15s}
+    .lang-dropdown button:hover{background:oklch(18% 0.01 85);color:var(--gold)}
+    .lang-dropdown button.active{color:var(--gold)}
+
+    .nav-mobile{display:none;background:none;border:none;color:var(--cream);font-size:1.4rem;cursor:pointer}
+
+    /* PAGES */
+    .page{display:none;min-height:100vh;padding-top:72px}
+    .page.active{display:block}
+
+    /* HERO */
+    .hero{min-height:calc(100vh - 72px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 24px;position:relative}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,oklch(12% 0.02 85) 0%,var(--bg) 70%);pointer-events:none}
+    .hero-content{position:relative;z-index:1}
+    .hero-eyebrow{font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:20px;font-weight:500}
+    .hero h1{font-size:clamp(2.6rem,5.5vw,4.2rem);line-height:1.1;margin-bottom:20px}
+    .hero h1 em{font-style:italic;color:var(--gold)}
+    .hero-sub{font-size:.9rem;color:var(--cream-dim);max-width:48ch;margin:0 auto 40px;line-height:1.7}
+    .btn{display:inline-block;padding:13px 36px;font-family:'Montserrat',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.16em;font-weight:500;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;transition:background .3s var(--ease-out),color .3s var(--ease-out)}
+    .btn:hover{background:var(--gold);color:var(--bg-deep)}
+    .btn-solid{background:var(--gold);color:var(--bg-deep)}
+    .btn-solid:hover{background:var(--gold-light)}
+
+    /* SECTIONS */
+    section{padding:80px 32px;max-width:1100px;margin:0 auto}
+    .section-eyebrow{font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:14px;font-weight:500}
+    .section-title{font-size:clamp(1.6rem,3vw,2.5rem);margin-bottom:20px}
+    .section-desc{color:var(--cream-dim);max-width:55ch;margin-bottom:40px;line-height:1.7;font-size:.88rem}
+
+    /* GRID */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
+    .grid-item{padding:36px 28px;background:var(--charcoal);border:1px solid oklch(20% 0.008 85);transition:border-color .3s var(--ease-out),transform .3s var(--ease-out)}
+    .grid-item:hover{border-color:oklch(40% 0.06 85);transform:translateY(-2px)}
+    .grid-item h3{font-size:1.3rem;margin-bottom:10px}
+    .grid-item p{color:var(--cream-dim);font-size:.82rem;line-height:1.7}
+    .grid-item .price{margin-top:16px;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-weight:500}
+
+    /* STATS */
+    .stats{display:flex;gap:48px;padding:48px 0;border-top:1px solid oklch(20% 0.008 85);border-bottom:1px solid oklch(20% 0.008 85);flex-wrap:wrap}
+    .stat{flex:1;min-width:120px}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--gold);line-height:1;margin-bottom:6px}
+    .stat-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--cream-dim)}
+
+    /* TRIP PAGE */
+    .trip-hero{min-height:55vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 24px;background:radial-gradient(ellipse at 50% 40%,oklch(14% 0.03 85) 0%,var(--bg) 65%)}
+    .trip-badge{display:inline-block;padding:5px 16px;border:1px solid var(--gold);color:var(--gold);font-size:.55rem;text-transform:uppercase;letter-spacing:.2em;font-weight:500;margin-bottom:20px}
+    .trip-hero h1{font-size:clamp(2.2rem,4.5vw,3.4rem);margin-bottom:12px}
+    .trip-hero .date{font-size:1rem;color:var(--gold);font-family:'Cormorant Garamond',serif;margin-bottom:12px}
+    .trip-hero .sub{color:var(--cream-dim);font-size:.88rem;max-width:50ch;margin-bottom:40px;line-height:1.7}
+    .trip-highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;max-width:700px;margin:40px auto;padding:36px 0;border-top:1px solid oklch(18% 0.008 85);border-bottom:1px solid oklch(18% 0.008 85)}
+    .trip-hl{text-align:center}
+    .trip-hl .num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold);line-height:1}
+    .trip-hl .label{font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:var(--cream-dim);margin-top:6px}
+    .trip-details{max-width:800px;margin:0 auto;padding:80px 24px}
+    .trip-day{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid oklch(18% 0.008 85)}
+    .trip-day-label{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold)}
+    .trip-day-label span{display:block;font-family:'Montserrat',sans-serif;font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;color:var(--cream-dim);margin-top:3px}
+    .trip-day-content h4{font-size:1.1rem;margin-bottom:6px}
+    .trip-day-content p{font-size:.82rem;color:var(--cream-dim);line-height:1.7}
+
+    /* PACKAGES */
+    .packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+    .pkg{padding:44px 32px;background:var(--charcoal);border:1px solid oklch(20% 0.008 85);display:flex;flex-direction:column}
+    .pkg.featured{border-color:var(--gold-dark);position:relative}
+    .pkg.featured::before{content:'Most Popular';position:absolute;top:-1px;left:28px;right:28px;text-align:center;background:var(--gold);color:var(--bg-deep);font-size:.55rem;text-transform:uppercase;letter-spacing:.14em;font-weight:500;padding:5px 0}
+    .pkg h3{font-size:1.4rem;margin-bottom:6px}
+    .pkg .pkg-price{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);margin-bottom:16px}
+    .pkg ul{list-style:none;flex:1}
+    .pkg ul li{padding:7px 0;font-size:.78rem;color:var(--cream-dim);border-bottom:1px solid oklch(18% 0.005 85)}
+    .pkg .btn{margin-top:24px;text-align:center}
+
+    /* PRICING BOX */
+    .pricing-box{margin-top:60px;padding:40px;background:var(--charcoal);border:1px solid oklch(22% 0.01 85)}
+    .pricing-box h3{font-size:1.6rem;margin-bottom:20px}
+    .pricing-box ul{list-style:none;margin-bottom:24px}
+    .pricing-box ul li{padding:8px 0;font-size:.82rem;color:var(--cream-dim);display:flex;align-items:center;gap:10px}
+    .pricing-box ul li::before{content:'◈';color:var(--gold)}
+
+    /* REQUIREMENTS */
+    .req-list{list-style:none;max-width:600px;margin:0 auto}
+    .req-list li{padding:16px 0;border-bottom:1px solid oklch(20% 0.008 85);display:flex;align-items:flex-start;gap:14px;font-size:.85rem;color:var(--cream-dim)}
+    .req-list li::before{content:'✓';color:var(--gold);font-weight:500;flex-shrink:0}
+
+    /* REFERRAL */
+    .referral-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+    .referral-item{padding:32px 20px;background:var(--charcoal);border:1px solid oklch(20% 0.008 85);text-align:center}
+    .referral-item h3{color:var(--gold);font-size:1.6rem;margin-bottom:8px}
+    .referral-item p{font-size:.78rem;color:var(--cream-dim)}
+
+    /* FOOTER */
+    footer{padding:48px 32px 24px;border-top:1px solid oklch(18% 0.008 85);text-align:center}
+    .footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);margin-bottom:10px}
+    footer p{font-size:.7rem;color:oklch(50% 0.01 85);line-height:1.8}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      nav{padding:14px 16px}
+      .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--bg-deep);padding:20px;gap:16px;border-bottom:1px solid oklch(20% 0.01 85)}
+      .nav-links.open{display:flex}
+      .nav-mobile{display:block}
+      section{padding:56px 16px}
+      .stats{gap:24px}
+      .trip-day{grid-template-columns:1fr;gap:6px}
+      .referral-grid{grid-template-columns:1fr}
+      .packages{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo" data-page="home">Bangkok Elite Models</a>
+  <button class="nav-mobile" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <ul class="nav-links">
+    <li><a href="#" data-page="home" class="active" data-i18n="nav_home">Home</a></li>
+    <li><a href="#" data-page="trip" data-i18n="nav_trip">Photo Trip</a></li>
+    <li><a href="#" data-page="studios" data-i18n="nav_studios">Studios</a></li>
+    <li><a href="#" data-page="book" data-i18n="nav_book">Book</a></li>
+    <li><a href="#" data-page="apply" data-i18n="nav_apply">Apply</a></li>
+    <li>
+      <div class="lang-wrap">
+        <button class="lang-btn" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span id="current-lang">EN</span> ▾
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown"></div>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-i18n="hero_eyebrow">Southeast Asia's Premier Photography Agency</p>
+      <h1 data-i18n="hero_title">Curated Talent. <em>Unforgettable Sessions.</em></h1>
+      <p class="hero-sub" data-i18n="hero_sub">We connect photographers with exceptional models across Bangkok, Phuket, Chiang Mai, and beyond. Every session is curated, every detail handled.</p>
+      <a href="#" class="btn" data-page="book" data-i18n="hero_cta">Book a Session</a>
+    </div>
+  </div>
+  <section>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">80%</div><div class="stat-label" data-i18n="stat_models">To Our Models</div></div>
+      <div class="stat"><div class="stat-num">3hr</div><div class="stat-label" data-i18n="stat_sessions">Standard Sessions</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label" data-i18n="stat_cities">Cities Covered</div></div>
+      <div class="stat"><div class="stat-num">5★</div><div class="stat-label" data-i18n="stat_studios">Studio Partners</div></div>
+    </div>
+  </section>
+  <section>
+    <p class="section-eyebrow" data-i18n="services_eyebrow">What We Offer</p>
+    <h2 class="section-title" data-i18n="services_title">Sessions Tailored to Your Vision</h2>
+    <p class="section-desc" data-i18n="services_desc">From intimate studio portraits to editorial street work, we provide the talent, locations, and logistics so you can focus entirely on your craft.</p>
+    <div class="grid">
+      <div class="grid-item"><h3 data-i18n="svc1_title">Portrait &amp; Glamour</h3><p data-i18n="svc1_desc">Classic studio portraiture with professional lighting, backdrops, and wardrobe. Experienced models who bring energy to every frame.</p><div class="price" data-i18n="svc1_price">From $150 / session</div></div>
+      <div class="grid-item"><h3 data-i18n="svc2_title">Editorial &amp; Fashion</h3><p data-i18n="svc2_desc">Magazine-quality editorial sessions in curated locations. Styling, MUA, and location scouting handled.</p><div class="price" data-i18n="svc2_price">From $300 / session</div></div>
+      <div class="grid-item"><h3 data-i18n="svc3_title">Fine Art &amp; Shibari</h3><p data-i18n="svc3_desc">Specialized 2-hour sessions for artistic rope work and fine art concepts. Trained models, collaborative process.</p><div class="price" data-i18n="svc3_price">From $400 / session</div></div>
+      <div class="grid-item"><h3 data-i18n="svc4_title">Photo Trips</h3><p data-i18n="svc4_desc">Multi-day immersive photography experiences. Curated roster, studio access, street locations, group dinners. Max 6 photographers.</p><div class="price" data-i18n="svc4_price">Starting Dec 2026</div></div>
+    </div>
+  </section>
+  <section>
+    <p class="section-eyebrow" data-i18n="models_eyebrow">For Models</p>
+    <h2 class="section-title" data-i18n="models_title">Join Our Roster</h2>
+    <p class="section-desc" data-i18n="models_desc">We pay 80% of every booking fee, no exceptions. Choose your comfort level, bring a chaperone, work at your pace.</p>
+    <a href="#" class="btn" data-page="apply" data-i18n="models_cta">Apply Now</a>
+  </section>
+</div>
+
+<!-- PHOTO TRIP -->
+<div class="page" id="page-trip">
+  <div class="trip-hero">
+    <span class="trip-badge" data-i18n="trip_badge">Limited Availability</span>
+    <h1 data-i18n="trip_title">Bangkok Photo Trip</h1>
+    <p class="date">December 28, 2026 — January 2, 2027</p>
+    <p class="sub" data-i18n="trip_sub">Six days in Bangkok with 8 handpicked models I've personally worked with. Two models per shooting day, four full days of creating. Ring in the New Year with us.</p>
+    <a href="#" class="btn btn-solid" data-page="book" data-i18n="trip_cta">Reserve Your Spot</a>
+  </div>
+  <section>
+    <div class="trip-highlights">
+      <div class="trip-hl"><div class="num">8</div><div class="label" data-i18n="trip_hl1">Curated Models</div></div>
+      <div class="trip-hl"><div class="num">4</div><div class="label" data-i18n="trip_hl2">Shooting Days</div></div>
+      <div class="trip-hl"><div class="num">2</div><div class="label" data-i18n="trip_hl3">Models Per Day</div></div>
+      <div class="trip-hl"><div class="num">6</div><div class="label" data-i18n="trip_hl4">Max Group Size</div></div>
+    </div>
+  </section>
+  <div class="trip-details">
+    <p class="section-eyebrow" data-i18n="trip_itin_eyebrow">Your Itinerary</p>
+    <h2 class="section-title" data-i18n="trip_itin_title">Six Days in Bangkok</h2>
+    <p class="section-desc" data-i18n="trip_itin_desc">Every model on this trip is someone I've shot with before. No unknowns, no gambles. Professionals who deliver frames you'll be proud to print.</p>
+    <div class="trip-day"><div class="trip-day-label">Day 1<span>Dec 28</span></div><div class="trip-day-content"><h4 data-i18n="day1_title">Arrival &amp; Welcome Dinner</h4><p data-i18n="day1_desc">Check in, settle in, join the group for dinner at a rooftop restaurant. Meet photographers, preview model portfolios.</p></div></div>
+    <div class="trip-day"><div class="trip-day-label">Day 2<span>Dec 29</span></div><div class="trip-day-content"><h4 data-i18n="day2_title">Studio: Portrait &amp; Glamour</h4><p data-i18n="day2_desc">Two models, professional studio with Profoto lighting, multiple backdrops. Each model for a 3-hour session.</p></div></div>
+    <div class="trip-day"><div class="trip-day-label">Day 3<span>Dec 30</span></div><div class="trip-day-content"><h4 data-i18n="day3_title">Studio: Editorial &amp; Fine Art</h4><p data-i18n="day3_desc">Two new models in a different studio. Textured walls, natural window light mixed with strobes, editorial styling.</p></div></div>
+    <div class="trip-day"><div class="trip-day-label">Day 4<span>Dec 31</span></div><div class="trip-day-content"><h4 data-i18n="day4_title">Creative &amp; New Year's Eve</h4><p data-i18n="day4_desc">Morning sessions with two artistic models. Evening free for Bangkok's legendary NYE celebrations on the Chao Phraya.</p></div></div>
+    <div class="trip-day"><div class="trip-day-label">Day 5<span>Jan 1</span></div><div class="trip-day-content"><h4 data-i18n="day5_title">Location &amp; Street</h4><p data-i18n="day5_desc">Two final models for outdoor work. Temples at golden hour, urban textures, rooftop access. Farewell dinner in the evening.</p></div></div>
+    <div class="trip-day"><div class="trip-day-label">Day 6<span>Jan 2</span></div><div class="trip-day-content"><h4 data-i18n="day6_title">Free Day &amp; Departure</h4><p data-i18n="day6_desc">No scheduled activities. Explore Bangkok, book a bonus session, or head to the airport. Late checkout arranged.</p></div></div>
+
+    <div style="margin-top:60px">
+      <p class="section-eyebrow" data-i18n="trip_pkg_eyebrow">Trip Packages</p>
+      <h2 class="section-title" data-i18n="trip_pkg_title">Choose Your Experience</h2>
+    </div>
+    <div class="packages" style="margin-top:32px">
+      <div class="pkg">
+        <h3 data-i18n="trip_essential">Essential</h3>
+        <div class="pkg-price">$2,500</div>
+        <ul>
+          <li data-i18n="trip_e1">4 shooting days, 2 models/day</li>
+          <li data-i18n="trip_e2">All studio rentals included</li>
+          <li data-i18n="trip_e3">Professional lighting provided</li>
+          <li data-i18n="trip_e4">Hotel included (3-star)</li>
+          <li>Welcome + farewell dinners</li>
+          <li data-i18n="trip_e5">WhatsApp group coordination</li>
+          <li data-i18n="trip_e6">Shared van + driver (all transport)</li>
+        </ul>
+        <a href="#" class="btn" data-page="book" data-i18n="trip_book_essential">Book Essential</a>
+      </div>
+      <div class="pkg featured">
+        <h3 data-i18n="trip_premium">Premium</h3>
+        <div class="pkg-price">$3,800</div>
+        <ul>
+          <li data-i18n="trip_p1">Everything in Essential, plus:</li>
+          <li data-i18n="trip_p2">Priority model scheduling</li>
+          <li data-i18n="trip_p3">Professional MUA for all sessions</li>
+          <li data-i18n="trip_p4">4-star hotel upgrade (breakfast daily)</li>
+          <li data-i18n="trip_p5">Model portfolios 2 weeks early</li>
+          <li data-i18n="trip_p6">Behind-the-scenes video clips</li>
+          <li data-i18n="trip_p7">Private 1-on-1 session slot</li>
+        </ul>
+        <a href="#" class="btn btn-solid" data-page="book" data-i18n="trip_book_premium">Book Premium</a>
+      </div>
+      <div class="pkg">
+        <h3 data-i18n="trip_vip">VIP</h3>
+        <div class="pkg-price">$5,500</div>
+        <ul>
+          <li data-i18n="trip_v1">Everything in Premium, plus:</li>
+          <li data-i18n="trip_v2">First pick of all model scheduling</li>
+          <li data-i18n="trip_v3">5-star hotel upgrade</li>
+          <li data-i18n="trip_v4">Extra shooting day (Day 6) with 2 bonus models</li>
+          <li data-i18n="trip_v5">Choose: reshoot favorites or try new models</li>
+          <li data-i18n="trip_v6">Edited highlight reel of your trip</li>
+          <li data-i18n="trip_v7">15% off your next trip</li>
+          <li data-i18n="trip_v8">Priority rebooking for future tours</li>
+        </ul>
+        <a href="#" class="btn" data-page="book" data-i18n="trip_book_vip">Book VIP</a>
+      </div>
+    </div>
+    <p style="color:var(--cream-dim);font-size:.8rem;margin-top:24px;text-align:center" data-i18n="trip_deposit">50% deposit secures your spot. Balance due 7 days before. All packages include hotel, shared van + driver, studios, and lighting.</p>
+  </div>
+</div>
+
+<!-- STUDIOS -->
+<div class="page" id="page-studios">
+  <section>
+    <p class="section-eyebrow" data-i18n="studios_eyebrow">Our Locations</p>
+    <h2 class="section-title" data-i18n="studios_title">Partner Studios</h2>
+    <p class="section-desc" data-i18n="studios_desc">Premium spaces across Southeast Asia. Equipment, lighting, and changing rooms included with every booking.</p>
+    <div class="grid">
+      <div class="grid-item"><h3>The White Room</h3><div class="price">Bangkok, Sukhumvit</div><p data-i18n="studio1">1,200 sqft cyclorama studio. Floor-to-ceiling north windows. Profoto D2 kit included. Private makeup station.</p></div>
+      <div class="grid-item"><h3>Industrial Loft</h3><div class="price">Bangkok, Ari</div><p data-i18n="studio2">Raw concrete, exposed steel, massive windows. Perfect for editorial and moody portraiture. Full blackout capability.</p></div>
+      <div class="grid-item"><h3>Golden Hour Terrace</h3><div class="price">Bangkok, Riverside</div><p data-i18n="studio3">Rooftop terrace overlooking the Chao Phraya. City skyline backdrop. Best 4pm-7pm. Indoor fallback for rain.</p></div>
+      <div class="grid-item"><h3>Island Studio</h3><div class="price">Phuket, Rawai</div><p data-i18n="studio4">Beach-adjacent with tropical garden. Indoor/outdoor flow. Swimwear, resort editorial, environmental portraiture.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- BOOK -->
+<div class="page" id="page-book">
+  <section>
+    <p class="section-eyebrow" data-i18n="book_eyebrow">Book a Session</p>
+    <h2 class="section-title" data-i18n="book_title">Let's Create Something Beautiful</h2>
+    <p class="section-desc" data-i18n="book_desc">Tell us about your vision. We'll match you with the perfect models, studio, and package.</p>
+
+    <form id="booking-form" style="max-width:640px" action="https://formspree.io/f/xbdnakzn" method="POST" onsubmit="handleBooking(event)">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div><label data-i18n="form_name">Full Name</label><input type="text" name="name" required></div>
+        <div><label data-i18n="form_email">Email</label><input type="email" name="email" required></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div><label data-i18n="form_phone">WhatsApp / Phone</label><input type="tel" name="phone"></div>
+        <div><label data-i18n="form_country">Country</label><input type="text" name="country"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label data-i18n="form_package">Package</label>
+        <select name="package" required>
+          <option value="" data-i18n="form_select">Select a package...</option>
+          <option value="essential">Essential ($150)</option>
+          <option value="premium">Premium ($500)</option>
+          <option value="vip">VIP Experience ($1,800)</option>
+          <option value="shibari">Fine Art / Shibari ($400)</option>
+          <option value="trip-essential">Photo Trip: Essential ($2,500)</option>
+          <option value="trip-premium">Photo Trip: Premium ($3,800)</option>
+          <option value="trip-vip">Photo Trip: VIP ($5,500)</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div><label data-i18n="form_dates">Preferred Dates</label><input type="text" name="dates" placeholder="e.g. Jan 15-17, 2027"></div>
+        <div><label data-i18n="form_city">City</label>
+          <select name="city">
+            <option value="bangkok">Bangkok</option>
+            <option value="phuket">Phuket</option>
+            <option value="chiangmai">Chiang Mai</option>
+            <option value="manila">Philippines</option>
+            <option value="bali">Indonesia</option>
+            <option value="vietnam">Vietnam</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label data-i18n="form_style">Session Style Preference</label>
+        <select name="style">
+          <option value="portrait">Portrait &amp; Glamour</option>
+          <option value="editorial">Editorial &amp; Fashion</option>
+          <option value="fineart">Fine Art</option>
+          <option value="shibari">Shibari / Rope Art</option>
+          <option value="mixed">Mixed / Open to suggestions</option>
+        </select>
+      </div>
+      <div style="margin-bottom:16px">
+        <label data-i18n="form_notes">Additional Notes / Vision</label>
+        <textarea name="notes" rows="4" placeholder="Tell us about your creative vision, any preferences for model type, mood, or concepts..."></textarea>
+      </div>
+      <div style="margin-bottom:24px">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
+          <input type="checkbox" name="terms" required style="margin-top:3px;accent-color:#C9A84C">
+          <span style="font-size:.75rem;color:var(--cream-dim)" data-i18n="form_terms">I understand that a 50% deposit is required to confirm my booking, with the balance due the night before the session.</span>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-solid" style="width:100%;padding:16px" data-i18n="form_submit">Submit Booking Request</button>
+    </form>
+
+    <div id="booking-success" style="display:none;text-align:center;padding:60px 20px">
+      <h2 class="section-title" style="color:var(--gold)" data-i18n="form_success_title">Booking Request Received!</h2>
+      <p class="section-desc" style="margin:20px auto" data-i18n="form_success_desc">We'll review your request and get back to you within 24 hours with model options and availability. Check your email for confirmation.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-eyebrow" data-i18n="pricing_eyebrow">Session Packages</p>
+    <h2 class="section-title" data-i18n="pricing_title">Pricing</h2>
+    <div class="packages">
+      <div class="pkg"><h3 data-i18n="pkg_essential">Essential</h3><div class="pkg-price">$150</div><ul><li data-i18n="pe1">1 model, 3-hour session</li><li data-i18n="pe2">Studio included</li><li data-i18n="pe3">Basic lighting setup</li><li data-i18n="pe4">Model wardrobe: 3 looks</li><li data-i18n="pe5">Private changing area</li></ul></div>
+      <div class="pkg featured"><h3 data-i18n="pkg_premium">Premium</h3><div class="pkg-price">$500</div><ul><li data-i18n="pp1">1 model, 3-hour session</li><li data-i18n="pp2">Premium studio</li><li data-i18n="pp3">Full Profoto lighting kit</li><li data-i18n="pp4">Professional MUA included</li><li data-i18n="pp5">Model wardrobe: 5+ looks</li><li data-i18n="pp6">Styling assistance</li><li data-i18n="pp7">Behind-the-scenes photos</li></ul></div>
+      <div class="pkg"><h3 data-i18n="pkg_vip">VIP Experience</h3><div class="pkg-price">$1,800</div><ul><li data-i18n="pv1">2 models, full day (6 hours)</li><li data-i18n="pv2">3 locations in one day</li><li data-i18n="pv3">Full production team</li><li data-i18n="pv4">MUA + styling all looks</li><li data-i18n="pv5">Transportation provided</li><li data-i18n="pv6">Edited highlight reel</li><li data-i18n="pv7">Priority rebooking</li></ul></div>
+    </div>
+  </section>
+</div>
+
+<!-- APPLY -->
+<div class="page" id="page-apply">
+  <section style="text-align:center">
+    <p class="section-eyebrow" data-i18n="apply_eyebrow">Join Our Roster</p>
+    <h2 class="section-title" data-i18n="apply_title">Model With Us</h2>
+    <p class="section-desc" style="margin-left:auto;margin-right:auto" data-i18n="apply_desc">Confident, professional models who want to earn well doing what they love. No experience required.</p>
+  </section>
+  <section>
+    <ul class="req-list">
+      <li data-i18n="req1">18+ with valid government ID (required for all bookings)</li>
+      <li data-i18n="req2">Based in or willing to travel to Southeast Asia</li>
+      <li data-i18n="req3">Comfortable in front of a camera (portrait, glamour, editorial)</li>
+      <li data-i18n="req4">Reliable and communicative (shows up on time, responds to messages)</li>
+      <li data-i18n="req5">You keep 80% of every booking fee, always</li>
+      <li data-i18n="req6">Optional chaperone at every session (your choice, every time)</li>
+      <li data-i18n="req7">You choose your comfort level: studio only, hotel, or location work</li>
+      <li data-i18n="req8">5 photos of your choice displayed on your BEM profile</li>
+    </ul>
+    <div style="text-align:center;padding:48px 20px">
+      <p style="color:var(--cream-dim);margin-bottom:20px;font-size:.85rem" data-i18n="apply_time">Takes about 5 minutes. We review applications within 48 hours.</p>
+      <a href="#" class="btn btn-solid" data-i18n="apply_cta">Apply Now</a>
+    </div>
+  </section>
+  <section>
+    <p class="section-eyebrow" data-i18n="referral_eyebrow">Referral Program</p>
+    <h2 class="section-title" data-i18n="referral_title">Earn By Referring</h2>
+    <p class="section-desc" data-i18n="referral_desc">Know someone who'd be great? Refer them. When they complete their first job, you earn a bonus.</p>
+    <div class="referral-grid">
+      <div class="referral-item"><h3>$5</h3><p data-i18n="ref1">First referral completes a job</p></div>
+      <div class="referral-item"><h3>$25</h3><p data-i18n="ref2">Second referral completes a job</p></div>
+      <div class="referral-item"><h3>$50</h3><p data-i18n="ref3">Third referral and beyond</p></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-brand">Bangkok Elite Models</div>
+  <p data-i18n="footer">Portrait · Glamour · Editorial · Fine Art Photography<br>Bangkok · Phuket · Chiang Mai · Philippines · Indonesia · Vietnam<br><br>© 2026 Bangkok Elite Models. All rights reserved.</p>
+</footer>
+
+<style>
+  form label{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--cream-dim);margin-bottom:6px;font-weight:400}
+  form input,form select,form textarea{width:100%;padding:12px 14px;background:var(--charcoal);border:1px solid oklch(22% 0.01 85);color:var(--cream);font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:300;transition:border-color .2s}
+  form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--gold)}
+  form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23C9A84C' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+  form textarea{resize:vertical;min-height:100px}
+</style>
+
+<script>
+const LANGS={
+  en:{name:"English",nav_home:"Home",nav_trip:"Photo Trip",nav_studios:"Studios",nav_book:"Book",nav_apply:"Apply",hero_eyebrow:"Southeast Asia's Premier Photography Agency",hero_title:'Curated Talent. <em>Unforgettable Sessions.</em>',hero_sub:"We connect photographers with exceptional models across Bangkok, Phuket, Chiang Mai, and beyond. Every session is curated, every detail handled.",hero_cta:"Book a Session",stat_models:"To Our Models",stat_sessions:"Standard Sessions",stat_cities:"Cities Covered",stat_studios:"Studio Partners",services_eyebrow:"What We Offer",services_title:"Sessions Tailored to Your Vision",services_desc:"From intimate studio portraits to editorial street work, we provide the talent, locations, and logistics so you can focus entirely on your craft.",svc1_title:"Portrait & Glamour",svc1_desc:"Classic studio portraiture with professional lighting, backdrops, and wardrobe. Experienced models who bring energy to every frame.",svc1_price:"From $150 / session",svc2_title:"Editorial & Fashion",svc2_desc:"Magazine-quality editorial sessions in curated locations. Styling, MUA, and location scouting handled.",svc2_price:"From $300 / session",svc3_title:"Fine Art & Shibari",svc3_desc:"Specialized 2-hour sessions for artistic rope work and fine art concepts. Trained models, collaborative process.",svc3_price:"From $400 / session",svc4_title:"Photo Trips",svc4_desc:"Multi-day immersive photography experiences. Curated roster, studio access, street locations, group dinners. Max 6 photographers.",svc4_price:"Starting Dec 2026",models_eyebrow:"For Models",models_title:"Join Our Roster",models_desc:"We pay 80% of every booking fee, no exceptions. Choose your comfort level, bring a chaperone, work at your pace.",models_cta:"Apply Now",trip_badge:"Limited Availability",trip_title:"Bangkok Photo Trip",trip_sub:"Six days in Bangkok with 8 handpicked models I've personally worked with. Two models per shooting day, four full days of creating. Ring in the New Year with us.",trip_cta:"Reserve Your Spot",trip_hl1:"Curated Models",trip_hl2:"Shooting Days",trip_hl3:"Models Per Day",trip_hl4:"Max Group Size",trip_itin_eyebrow:"Your Itinerary",trip_itin_title:"Six Days in Bangkok",trip_itin_desc:"Every model on this trip is someone I've shot with before. No unknowns, no gambles.",day1_title:"Arrival & Welcome Dinner",day1_desc:"Check in, settle in, join the group for dinner at a rooftop restaurant. Meet photographers, preview model portfolios.",day2_title:"Studio: Portrait & Glamour",day2_desc:"Two models, professional studio with Profoto lighting, multiple backdrops. Each model for a 3-hour session.",day3_title:"Studio: Editorial & Fine Art",day3_desc:"Two new models in a different studio. Textured walls, natural window light mixed with strobes, editorial styling.",day4_title:"Creative & New Year's Eve",day4_desc:"Morning sessions with two artistic models. Evening free for Bangkok's legendary NYE celebrations on the Chao Phraya.",day5_title:"Location & Street",day5_desc:"Two final models for outdoor work. Temples at golden hour, urban textures, rooftop access. Farewell dinner.",day6_title:"Free Day & Departure",day6_desc:"No scheduled activities. Explore Bangkok, book a bonus session, or head to the airport. Late checkout arranged.",trip_pkg_eyebrow:"Trip Packages",trip_pkg_title:"Choose Your Experience",trip_essential:"Essential",trip_premium:"Premium",trip_vip:"VIP",trip_e1:"4 shooting days, 2 models/day",trip_e2:"All studio rentals included",trip_e3:"Professional lighting provided",trip_e4:"Welcome + farewell dinners",trip_e5:"WhatsApp group coordination",trip_e6:"Airport pickup coordination",trip_p1:"Everything in Essential, plus:",trip_p2:"Priority model scheduling",trip_p3:"Professional MUA for all sessions",trip_p4:"Hotel included (4-star, breakfast daily)",trip_p5:"Model portfolios 2 weeks early",trip_p6:"Behind-the-scenes video clips",trip_p7:"Private 1-on-1 session slot",trip_v1:"Everything in Premium, plus:",trip_v2:"First pick of all model scheduling",trip_v3:"5-star hotel upgrade",trip_v4:"Private car + driver all week",trip_v5:"Extra bonus shooting day (Day 6)",trip_v6:"Edited highlight reel of your trip",trip_v7:"15% off your next trip",trip_v8:"Priority rebooking for future tours",trip_book_essential:"Book Essential",trip_book_premium:"Book Premium",trip_book_vip:"Book VIP",trip_deposit:"50% deposit secures your spot. Balance due 7 days before the trip.",studios_eyebrow:"Our Locations",studios_title:"Partner Studios",studios_desc:"Premium spaces across Southeast Asia. Equipment, lighting, and changing rooms included.",studio1:"1,200 sqft cyclorama studio. Floor-to-ceiling north windows. Profoto D2 kit included.",studio2:"Raw concrete, exposed steel, massive windows. Perfect for editorial and moody portraiture.",studio3:"Rooftop terrace overlooking the Chao Phraya. City skyline. Best 4pm-7pm.",studio4:"Beach-adjacent with tropical garden. Indoor/outdoor flow for resort editorial.",book_eyebrow:"Book a Session",book_title:"Let's Create Something Beautiful",book_desc:"Tell us about your vision. We'll match you with the perfect models, studio, and package.",form_name:"Full Name",form_email:"Email",form_phone:"WhatsApp / Phone",form_country:"Country",form_package:"Package",form_select:"Select a package...",form_dates:"Preferred Dates",form_city:"City",form_style:"Session Style",form_notes:"Additional Notes / Vision",form_terms:"I understand that a 50% deposit is required to confirm my booking, with the balance due the night before the session.",form_submit:"Submit Booking Request",form_success_title:"Booking Request Received!",form_success_desc:"We'll review your request and get back to you within 24 hours with model options and availability.",pricing_eyebrow:"Session Packages",pricing_title:"Pricing",pkg_essential:"Essential",pkg_premium:"Premium",pkg_vip:"VIP Experience",pe1:"1 model, 3-hour session",pe2:"Studio included",pe3:"Basic lighting setup",pe4:"Model wardrobe: 3 looks",pe5:"Private changing area",pp1:"1 model, 3-hour session",pp2:"Premium studio",pp3:"Full Profoto lighting kit",pp4:"Professional MUA included",pp5:"Model wardrobe: 5+ looks",pp6:"Styling assistance",pp7:"Behind-the-scenes photos",pv1:"2 models, full day (6 hours)",pv2:"3 locations in one day",pv3:"Full production team",pv4:"MUA + styling all looks",pv5:"Transportation provided",pv6:"Edited highlight reel",pv7:"Priority rebooking",apply_eyebrow:"Join Our Roster",apply_title:"Model With Us",apply_desc:"Confident, professional models who want to earn well doing what they love. No experience required.",req1:"18+ with valid government ID",req2:"Based in or willing to travel to Southeast Asia",req3:"Comfortable in front of a camera",req4:"Reliable and communicative",req5:"You keep 80% of every booking fee, always",req6:"Optional chaperone at every session",req7:"You choose your comfort level",req8:"5 photos on your BEM profile",apply_time:"Takes about 5 minutes. We review within 48 hours.",apply_cta:"Apply Now",referral_eyebrow:"Referral Program",referral_title:"Earn By Referring",referral_desc:"Refer a model. When they complete their first job, you earn a bonus.",ref1:"First referral completes a job",ref2:"Second referral completes a job",ref3:"Third referral and beyond",footer:"Portrait · Glamour · Editorial · Fine Art Photography<br>Bangkok · Phuket · Chiang Mai · Philippines · Indonesia · Vietnam<br><br>© 2026 Bangkok Elite Models. All rights reserved."},
+  th:{name:"ไทย",nav_home:"หน้าแรก",nav_trip:"ทริปถ่ายภาพ",nav_studios:"สตูดิโอ",nav_book:"จอง",nav_apply:"สมัคร",hero_eyebrow:"เอเจนซี่ถ่ายภาพระดับพรีเมียมแห่งเอเชียตะวันออกเฉียงใต้",hero_title:'นางแบบคัดสรร <em>เซสชั่นที่ไม่มีวันลืม</em>',hero_sub:"เราเชื่อมต่อช่างภาพกับนางแบบระดับสูงทั่วกรุงเทพ ภูเก็ต เชียงใหม่ ทุกรายละเอียดดูแลให้",hero_cta:"จองเซสชั่น",stat_models:"ให้นางแบบ",stat_sessions:"เซสชั่นมาตรฐาน",stat_cities:"เมืองที่ครอบคลุม",stat_studios:"สตูดิโอพาร์ทเนอร์",form_submit:"ส่งคำขอจอง",apply_cta:"สมัครเลย",ref1:"คนแรกที่แนะนำทำงานสำเร็จ",ref2:"คนที่สองทำงานสำเร็จ",ref3:"คนที่สามขึ้นไป"},
+  ja:{name:"日本語",nav_home:"ホーム",nav_trip:"フォトトリップ",nav_studios:"スタジオ",nav_book:"予約",nav_apply:"応募",hero_eyebrow:"東南アジア最高峰のフォトグラフィーエージェンシー",hero_title:'厳選モデル。<em>忘れられないセッション。</em>',hero_sub:"バンコク、プーケット、チェンマイで卓越したモデルとフォトグラファーをつなぎます。",hero_cta:"セッションを予約",form_submit:"予約リクエスト送信",apply_cta:"今すぐ応募"},
+  ko:{name:"한국어",nav_home:"홈",nav_trip:"포토트립",nav_studios:"스튜디오",nav_book:"예약",nav_apply:"지원",hero_eyebrow:"동남아시아 최고의 사진 에이전시",hero_title:'엄선된 모델. <em>잊을 수 없는 세션.</em>',hero_sub:"방콕, 푸켓, 치앙마이 전역에서 뛰어난 모델과 사진작가를 연결합니다.",hero_cta:"세션 예약",form_submit:"예약 요청 제출",apply_cta:"지금 지원"},
+  zh:{name:"中文",nav_home:"首页",nav_trip:"摄影之旅",nav_studios:"工作室",nav_book:"预约",nav_apply:"申请",hero_eyebrow:"东南亚顶级摄影机构",hero_title:'精选模特。<em>难忘的拍摄体验。</em>',hero_sub:"我们在曼谷、普吉岛、清迈等地为摄影师匹配优秀模特。每个细节都为您安排妥当。",hero_cta:"预约拍摄",form_submit:"提交预约请求",apply_cta:"立即申请"},
+  vi:{name:"Tiếng Việt",nav_home:"Trang chủ",nav_trip:"Chuyến đi",nav_studios:"Studio",nav_book:"Đặt lịch",nav_apply:"Ứng tuyển",hero_eyebrow:"Hãng nhiếp ảnh hàng đầu Đông Nam Á",hero_title:'Người mẫu tuyển chọn. <em>Buổi chụp khó quên.</em>',hero_sub:"Kết nối nhiếp ảnh gia với người mẫu xuất sắc tại Bangkok, Phuket, Chiang Mai.",hero_cta:"Đặt buổi chụp",form_submit:"Gửi yêu cầu đặt lịch",apply_cta:"Ứng tuyển ngay"},
+  id:{name:"Bahasa Indonesia",nav_home:"Beranda",nav_trip:"Trip Foto",nav_studios:"Studio",nav_book:"Pesan",nav_apply:"Daftar",hero_eyebrow:"Agensi Fotografi Premier Asia Tenggara",hero_title:'Model Terkurasi. <em>Sesi Tak Terlupakan.</em>',hero_sub:"Menghubungkan fotografer dengan model luar biasa di Bangkok, Phuket, Chiang Mai.",hero_cta:"Pesan Sesi",form_submit:"Kirim Permintaan",apply_cta:"Daftar Sekarang"},
+  fil:{name:"Filipino",nav_home:"Home",nav_trip:"Photo Trip",nav_studios:"Studios",nav_book:"Mag-book",nav_apply:"Mag-apply",hero_eyebrow:"Premier Photography Agency ng Southeast Asia",hero_title:'Mga Piling Model. <em>Hindi Malilimutang Sessions.</em>',hero_sub:"Kinokonekta namin ang mga photographer sa mga natatanging model sa Bangkok, Phuket, Chiang Mai.",hero_cta:"Mag-book ng Session",form_submit:"I-submit ang Booking",apply_cta:"Mag-apply Na"},
+  ms:{name:"Bahasa Melayu",nav_home:"Laman Utama",nav_trip:"Trip Foto",nav_studios:"Studio",nav_book:"Tempah",nav_apply:"Mohon",hero_eyebrow:"Agensi Fotografi Terbaik Asia Tenggara",hero_title:'Model Pilihan. <em>Sesi Yang Tidak Dapat Dilupakan.</em>',hero_cta:"Tempah Sesi",form_submit:"Hantar Permintaan",apply_cta:"Mohon Sekarang"},
+  hi:{name:"हिन्दी",nav_home:"होम",nav_trip:"फोटो ट्रिप",nav_studios:"स्टूडियो",nav_book:"बुक करें",nav_apply:"आवेदन",hero_eyebrow:"दक्षिण पूर्व एशिया की प्रमुख फोटोग्राफी एजेंसी",hero_title:'चुनिंदा मॉडल। <em>अविस्मरणीय सेशन।</em>',hero_cta:"सेशन बुक करें",form_submit:"बुकिंग अनुरोध भेजें",apply_cta:"अभी आवेदन करें"},
+  ru:{name:"Русский",nav_home:"Главная",nav_trip:"Фототур",nav_studios:"Студии",nav_book:"Бронь",nav_apply:"Заявка",hero_eyebrow:"Премиальное фотоагентство Юго-Восточной Азии",hero_title:'Отобранные модели. <em>Незабываемые сессии.</em>',hero_sub:"Мы связываем фотографов с исключительными моделями в Бангкоке, Пхукете, Чиангмае.",hero_cta:"Забронировать сессию",form_submit:"Отправить запрос",apply_cta:"Подать заявку"},
+  uk:{name:"Українська",nav_home:"Головна",nav_trip:"Фототур",nav_studios:"Студії",nav_book:"Бронь",nav_apply:"Заявка",hero_eyebrow:"Преміальна фотоагенція Південно-Східної Азії",hero_title:'Відібрані моделі. <em>Незабутні сесії.</em>',hero_cta:"Забронювати сесію",form_submit:"Надіслати запит",apply_cta:"Подати заявку"},
+  pl:{name:"Polski",nav_home:"Strona główna",nav_trip:"Fotowycieczka",nav_studios:"Studia",nav_book:"Rezerwacja",nav_apply:"Aplikuj",hero_eyebrow:"Najlepsza agencja fotograficzna w Azji Południowo-Wschodniej",hero_title:'Wyselekcjonowane modelki. <em>Niezapomniane sesje.</em>',hero_cta:"Zarezerwuj sesję",form_submit:"Wyślij zapytanie",apply_cta:"Aplikuj teraz"},
+  ro:{name:"Română",nav_home:"Acasă",nav_trip:"Excursie foto",nav_studios:"Studiouri",nav_book:"Rezervare",nav_apply:"Aplică",hero_eyebrow:"Agenția foto premium din Asia de Sud-Est",hero_title:'Modele selectate. <em>Sesiuni de neuitat.</em>',hero_cta:"Rezervă o sesiune",form_submit:"Trimite cererea",apply_cta:"Aplică acum"},
+  es:{name:"Español",nav_home:"Inicio",nav_trip:"Viaje fotográfico",nav_studios:"Estudios",nav_book:"Reservar",nav_apply:"Aplicar",hero_eyebrow:"La agencia de fotografía premier del sudeste asiático",hero_title:'Modelos seleccionadas. <em>Sesiones inolvidables.</em>',hero_sub:"Conectamos fotógrafos con modelos excepcionales en Bangkok, Phuket y Chiang Mai.",hero_cta:"Reservar sesión",form_submit:"Enviar solicitud",apply_cta:"Aplicar ahora"},
+  fr:{name:"Français",nav_home:"Accueil",nav_trip:"Voyage photo",nav_studios:"Studios",nav_book:"Réserver",nav_apply:"Postuler",hero_eyebrow:"Agence photo premium d'Asie du Sud-Est",hero_title:'Mannequins sélectionnés. <em>Sessions inoubliables.</em>',hero_sub:"Nous connectons les photographes avec des mannequins d'exception à Bangkok, Phuket et Chiang Mai.",hero_cta:"Réserver une session",form_submit:"Envoyer la demande",apply_cta:"Postuler maintenant"},
+  de:{name:"Deutsch",nav_home:"Startseite",nav_trip:"Fotoreise",nav_studios:"Studios",nav_book:"Buchen",nav_apply:"Bewerben",hero_eyebrow:"Südostasiens führende Fotoagentur",hero_title:'Kuratierte Models. <em>Unvergessliche Sessions.</em>',hero_sub:"Wir verbinden Fotografen mit außergewöhnlichen Models in Bangkok, Phuket und Chiang Mai.",hero_cta:"Session buchen",form_submit:"Anfrage senden",apply_cta:"Jetzt bewerben"},
+  it:{name:"Italiano",nav_home:"Home",nav_trip:"Viaggio foto",nav_studios:"Studi",nav_book:"Prenota",nav_apply:"Candidati",hero_eyebrow:"L'agenzia fotografica premier del Sud-Est asiatico",hero_title:'Modelle selezionate. <em>Sessioni indimenticabili.</em>',hero_cta:"Prenota una sessione",form_submit:"Invia richiesta",apply_cta:"Candidati ora"},
+  pt:{name:"Português",nav_home:"Início",nav_trip:"Viagem foto",nav_studios:"Estúdios",nav_book:"Reservar",nav_apply:"Candidatar",hero_eyebrow:"A agência fotográfica premium do Sudeste Asiático",hero_title:'Modelos selecionadas. <em>Sessões inesquecíveis.</em>',hero_cta:"Reservar sessão",form_submit:"Enviar pedido",apply_cta:"Candidatar-se agora"},
+  nl:{name:"Nederlands",nav_home:"Home",nav_trip:"Fotoreis",nav_studios:"Studio's",nav_book:"Boeken",nav_apply:"Solliciteren",hero_eyebrow:"Het toonaangevende fotobureau van Zuidoost-Azië",hero_title:'Geselecteerde modellen. <em>Onvergetelijke sessies.</em>',hero_cta:"Sessie boeken",form_submit:"Aanvraag versturen",apply_cta:"Nu solliciteren"},
+  sv:{name:"Svenska",nav_home:"Hem",nav_trip:"Fotoresa",nav_studios:"Studior",nav_book:"Boka",nav_apply:"Ansök",hero_eyebrow:"Sydostasiens främsta fotobyrå",hero_title:'Utvalda modeller. <em>Oförglömliga sessioner.</em>',hero_cta:"Boka session",form_submit:"Skicka förfrågan",apply_cta:"Ansök nu"},
+  cs:{name:"Čeština",nav_home:"Domů",nav_trip:"Fotovýlet",nav_studios:"Studia",nav_book:"Rezervace",nav_apply:"Přihláška",hero_eyebrow:"Prémiová fotografická agentura jihovýchodní Asie",hero_title:'Vybrané modelky. <em>Nezapomenutelné focení.</em>',hero_cta:"Rezervovat focení",form_submit:"Odeslat požadavek",apply_cta:"Přihlásit se"},
+  hu:{name:"Magyar",nav_home:"Főoldal",nav_trip:"Fotóút",nav_studios:"Stúdiók",nav_book:"Foglalás",nav_apply:"Jelentkezés",hero_eyebrow:"Délkelet-Ázsia prémium fotóügynöksége",hero_title:'Válogatott modellek. <em>Felejthetetlen fotózások.</em>',hero_cta:"Fotózás foglalása",form_submit:"Kérés küldése",apply_cta:"Jelentkezz most"},
+  tr:{name:"Türkçe",nav_home:"Ana Sayfa",nav_trip:"Fotoğraf Turu",nav_studios:"Stüdyolar",nav_book:"Rezervasyon",nav_apply:"Başvur",hero_eyebrow:"Güneydoğu Asya'nın önde gelen fotoğraf ajansı",hero_title:'Seçilmiş modeller. <em>Unutulmaz çekimler.</em>',hero_cta:"Çekim rezervasyonu",form_submit:"Talep gönder",apply_cta:"Şimdi başvur"},
+  "zh-tw":{name:"繁體中文",nav_home:"首頁",nav_trip:"攝影之旅",nav_studios:"工作室",nav_book:"預約",nav_apply:"申請",hero_eyebrow:"東南亞頂級攝影機構",hero_title:'精選模特。<em>難忘的拍攝體驗。</em>',hero_cta:"預約拍攝",form_submit:"提交預約請求",apply_cta:"立即申請"},
+  ar:{name:"العربية",nav_home:"الرئيسية",nav_trip:"رحلة تصوير",nav_studios:"الاستوديوهات",nav_book:"احجز",nav_apply:"تقدّم",hero_eyebrow:"وكالة التصوير الرائدة في جنوب شرق آسيا",hero_title:'عارضات مختارات. <em>جلسات لا تُنسى.</em>',hero_cta:"احجز جلسة",form_submit:"إرسال طلب الحجز",apply_cta:"تقدّم الآن"}
+};
+
+let currentLang='en';
+const dropdown=document.getElementById('lang-dropdown');
+Object.entries(LANGS).forEach(([code,data])=>{
+  const btn=document.createElement('button');
+  btn.textContent=data.name;
+  btn.dataset.lang=code;
+  if(code==='en')btn.classList.add('active');
+  btn.onclick=()=>switchLang(code);
+  dropdown.appendChild(btn);
+});
+
+function switchLang(code){
+  currentLang=code;
+  document.getElementById('current-lang').textContent=code.toUpperCase();
+  document.querySelectorAll('.lang-dropdown button').forEach(b=>{b.classList.toggle('active',b.dataset.lang===code)});
+  document.querySelector('.lang-dropdown').classList.remove('open');
+  const t=LANGS[code];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.dataset.i18n;
+    if(t[key])el.innerHTML=t[key];
+    else if(LANGS.en[key])el.innerHTML=LANGS.en[key];
+  });
+}
+
+// SPA NAV
+document.querySelectorAll('[data-page]').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const id=link.dataset.page;
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+    document.querySelectorAll('.nav-links a[data-page="'+id+'"]').forEach(a=>a.classList.add('active'));
+    window.scrollTo({top:0,behavior:'smooth'});
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+
+function handleBooking(e){
+  e.preventDefault();
+  const form=document.getElementById('booking-form');
+  const data=new FormData(form);
+  fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}}).then(r=>{if(r.ok){form.style.display='none';document.getElementById('booking-success').style.display='block';}else{alert('Something went wrong. Please try again.');}}).catch(()=>alert('Network error. Please try again.'));
+}
+</script>
+</body>
+</html>
